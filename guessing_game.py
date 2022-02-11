@@ -31,7 +31,7 @@ def start_game():
         attempts = 1
 
         while guess != ANSWER:
-            if guess > upper_limit:
+            if guess > upper_limit or guess < lower_limit:
                 print(f"Try again. My secret number is only between 1 and 100.\n")
             elif guess > ANSWER:
                 print(f"Your guess is too high.\n")
