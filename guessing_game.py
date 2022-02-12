@@ -18,17 +18,17 @@ print('''
 ''')
 
 scores = []  # stores the score of each game
+lower_limit = 1
+upper_limit = 100
 
 
 def start_game():
 
-    lower_limit = 1
-    upper_limit = 100
     ANSWER = random.randint(lower_limit, upper_limit)
     attempted_numbers = []
 
-    print(f"I'm thinking of a number between {lower_limit} and {upper_limit}, can you guess what it is?")
-    time.sleep(0.5)
+    print(f"I'm thinking of a number between {lower_limit} and {upper_limit}, can you guess what it is?\n")
+    time.sleep(0.3)
 
     try:
         guess = int(input(f"Enter a number between {lower_limit} and {upper_limit}: "))
@@ -37,7 +37,7 @@ def start_game():
 
         while guess != ANSWER:
             if guess > upper_limit or guess < lower_limit:
-                print("Try again. My secret number is only between 1 and 100.\n")
+                print(f"Try again. My secret number is only between {lower_limit} and {upper_limit}.\n")
             elif guess > ANSWER:
                 print("Your guess is too high.\n")
             elif guess < ANSWER:
@@ -55,25 +55,23 @@ Fantastic, you got it!!!\nIt took you {attempts} tries to guess the secret numbe
 -----------------
  YOUR GAME STATS
 -----------------
-Mean: {mean(attempted_numbers)}
+Mean: {round(mean(attempted_numbers), 2)}
 Median: {median(attempted_numbers)}
 Mode: {mode(attempted_numbers)}
         ''')
         scores.append(attempts)
-        time.sleep(2.5)
+        time.sleep(1.5)
 
 
-# Kick off the program by calling the start_game function.
-start_game()
-
-play_again = input("Would you like to play again? [y]es/[n]o: ")
+play_again = 'y'
 while play_again.lower() == "y" or play_again.lower() == "yes":
-    if min(scores) == 1:
-        print("\nSomebody guessed the number in a single attempt!!! Try beating that...\n")
-    else:
-        print(f"\n===> The score to beat is {min(scores)} attempts! <===\n")
     start_game()
     play_again = input("Would you like to play again? [y]es/[n]o: ")
-
-
-print("Thank you for playing! Ciao!")
+    if min(scores) == 1:
+        print("\nSomebody guessed the number in a single attempt!!! Try beating that...\n")
+    elif play_again.lower() == "y" or play_again.lower() == "yes":
+        print(f"\n===> The score to beat is {min(scores)} attempts! <===\n")
+        time.sleep(2)
+    else:
+        print("\nThank you for playing! Ciao!\n")
+        break
