@@ -9,6 +9,10 @@ from statistics import mean
 from statistics import median
 from statistics import mode
 
+scores = [10]  # stores the score of each game, default high score is 10
+lower_limit = 1
+upper_limit = 100
+
 print('''
 =======================================
 |                                     |
@@ -16,19 +20,14 @@ print('''
 |                                     |
 =======================================
 ''')
-
-scores = []  # stores the score of each game
-lower_limit = 1
-upper_limit = 100
+print(f"I'm thinking of a number between {lower_limit} and {upper_limit}, can you guess what it is?\n")
+time.sleep(0.3)
 
 
 def start_game():
 
     ANSWER = random.randint(lower_limit, upper_limit)
     attempted_numbers = []
-
-    print(f"I'm thinking of a number between {lower_limit} and {upper_limit}, can you guess what it is?\n")
-    time.sleep(0.3)
 
     try:
         guess = int(input(f"Enter a number between {lower_limit} and {upper_limit}: "))
